@@ -42,4 +42,41 @@ public class Main_2_18_1 {
 }
 
 ```
+2_18_2
 
+Write a program that counts how many nails can be purchased at $1 and what will surrender 
+if they buy one of each kind of the nail (nails cost: $0.1, $0.2, $0.3, etc). 
+The program output must be like next example: 4 items bought.
+
+```java
+package com.brainacad.oop.testcore1._2_18_2;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.MathContext;
+import java.text.NumberFormat;
+import java.util.Locale;
+
+public class Main_2_18_2 {
+
+    public static void main(String[] args) {
+
+        BigInteger amount = new BigInteger("1");
+        BigDecimal step = new BigDecimal("0.1");
+        BigDecimal counter = new BigDecimal(step.toString());
+        BigDecimal lastNail = new BigDecimal("0.4");
+        BigDecimal surrender = new BigDecimal(amount.toString());
+
+        for(counter = new BigDecimal("0.1");
+            counter.compareTo(lastNail) <= 0;
+            counter = counter.add(step))
+        {
+            surrender.subtract(counter);
+        }
+
+        NumberFormat curDef = NumberFormat.getCurrencyInstance(Locale.US);
+        System.out.println("Money left over: " + curDef.format(surrender));
+    }
+}
+
+```
